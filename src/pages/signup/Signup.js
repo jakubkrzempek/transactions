@@ -18,7 +18,7 @@ export default function Signup() {
 
     return (
         <form onSubmit={handleSubmit} className={styles['signup-form']}>
-            <h2>Zarejestruj</h2>
+            <h2>Zarejestruj się</h2>
             <label>
                 <span>email:</span>
                 <input
