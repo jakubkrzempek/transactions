@@ -7,7 +7,7 @@ export const TransactionList = ({ transactions }) => {
     return (
         <ul className={styles.transactions}>
             {transactions.map((transaction => {
-                return <li key={transaction.id}>
+                return <li key={transaction.id}>a
                     <p className={styles.name}>{transaction.name}</p>
                     <p className={styles.amount}>{transaction.amount} zł</p>
                     <button onClick={() => deleteDocument(transaction.id)}>X</button>
