@@ -30,7 +30,12 @@ jobs:
 
       - name: Build
         run: npm run build 
-
+        
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: path/to/artifact
   deploy:
     needs: build
     runs-on: ubuntu-latest
