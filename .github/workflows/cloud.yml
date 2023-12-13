@@ -18,50 +18,42 @@ jobs:
         node-version: [16.x]
 
     steps:
-      
-name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      
-name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-      
-name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      
-name: Build
-      run: npm run build
+      - name: Build
+        run: npm run build
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      
-name: Checkout repository for deployment
-      uses: actions/checkout@v4
+      - name: Checkout repository for deployment
+        uses: actions/checkout@v4
 
-      
-name: Debug
-      run: |
-        ls -al
-        ls -al build
+      - name: Debug
+        run: |
+          ls -al
+          ls -al build
 
-      
-name: Setup Git
-      run: |
-        git config --global user.name "${{ github.actor }}"
-        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Setup Git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      
-name: Deploy to GitHub Pages
-      run: |
-        git checkout -b gh-pages
-        cp -r build/* .
-        git add -f .
-        git commit -m "Deploy to GitHub Pages"
-        git push origin gh-pages --force
+      - name: Deploy to GitHub Pages
+        run: |
+          git checkout -b gh-pages
+          cp -r build/* .
+          git add -f .
+          git commit -m "Deploy to GitHub Pages"
+          git push origin gh-pages --force
