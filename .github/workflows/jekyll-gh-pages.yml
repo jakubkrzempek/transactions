@@ -1,4 +1,3 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
@@ -31,9 +30,14 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
+        run: |
+          bundle install
+          JEKYLL_ENV=production bundle exec jekyll build -d build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-site
+          path: build
 
   # Deployment job
   deploy:
@@ -43,6 +47,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: built-site
+          path: build
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages  # Change to the branch you want to deploy to, e.g., gh-pages
+          folder: build
