@@ -47,7 +47,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          git checkout  gh-pages
+          git checkout -b gh-pages
           cp -r build/* .
           git add -f .
           git commit -m "Deploy to GitHub Pages"
