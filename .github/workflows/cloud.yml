@@ -40,10 +40,15 @@ jobs:
       - name: Checkout repository for deployment
         uses: actions/checkout@v4
 
+      - name: Setup Git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
-        
+        run: |
+          git checkout -b gh-pages
+          cp -r build/* .
+          git add -f .
+          git commit -m "Deploy to GitHub Pages"
+          git push origin gh-pages --force
