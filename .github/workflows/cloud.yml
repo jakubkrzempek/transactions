@@ -47,8 +47,8 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          git checkout -b gh-pages
-          cp -r transaction/build/* .
+          git checkout -b main
+          cp -r build/* .
           git add -f .
           git commit -m "Deploy to GitHub Pages"
-          git push origin gh-pages --force
+          git push origin main --force
