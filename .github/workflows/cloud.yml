@@ -1,3 +1,4 @@
+
 name: Node.js CI/CD
 
 on:
@@ -37,11 +38,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Check if 'build' directory exists
-        run: test -d build || (echo "Error: 'build' directory not found" && exit 1)
-
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: jakubkrzempek/github-pages-deploy-action@3.7.1
         with:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
