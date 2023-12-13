@@ -2,9 +2,9 @@ name: Node.js CI/CD
 
 on:
   push:
-    branches: [gh-pages]
+    branches: [main]
   pull_request:
-    branches: [gh-pages]
+    branches: [main]
 
 permissions:
   id-token: write
