@@ -23,7 +23,7 @@ export const TransactionForm = ({ uid }) => {
     }, [response.success])
     return (
         <>
-            <h3>Dodaj Transakcje</h3>
+            <h3>Dodaj Transakcjee</h3>
             <form onSubmit={handleSubmit}>
                 <label>
                     <span>Nazwa transakcji:</span>
