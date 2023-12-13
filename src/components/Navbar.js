@@ -11,7 +11,7 @@ export default function Navbar() {
     return (
         <nav className={styles.navbar}>
             <ul>
-                <li className={styles.title}>Transakcje</li>
+                <li className={styles.title}>Transakcjee</li>
 
                 {!user && (<>
                     <li><Link to="/login">Zaloguj siee</Link></li>
